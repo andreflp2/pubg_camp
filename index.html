@@ -16,19 +16,14 @@
 </head>
 <body>
 
-    <!-- Barra superior -->
     <div class="top-bar">
         <h2>Campeonato de Duplas Clan [VIN]</h2>
     </div>
-
-    <!-- Botão para abrir o widget -->
-    <button id="openWidgetBtn">Abrir Widget de Arrecadação</button>
 
     <header>
         <h1>Dias 09 e 10 de novembro</h1>
     </header>
 
-    <!-- Contagem Regressiva -->
     <div class="countdown" id="countdown">
         O campeonato começa em: <span id="timer"></span>
     </div>
@@ -41,8 +36,7 @@
                     <tr>
                         <th><i class="fas fa-trophy"></i> Posição</th>
                         <th><i class="fas fa-users"></i> Dupla</th>
-                        <th><i class="fas fa-crown"></i> Vitórias</th>
-                        <th><i class="fas fa-crosshairs"></i> Kills</th>
+                        <th><i class="fas fa-crown"></i> Kills</th>
                         <th><i class="fas fa-chart-line"></i> Pontuação Total</th>
                     </tr>
                 </thead>
@@ -67,9 +61,7 @@
                     <tr>
                         <th><i class="fas fa-trophy"></i> Posição</th>
                         <th><i class="fas fa-users"></i> Dupla</th>
-                        <th><i class="fas fa-crown"></i> Vitórias</th>
-                        <th><i class="fas fa-crosshairs"></i> Kills</th>
-                        <th><i class="fas fa-chart-line"></i> Pontuação Total</th>
+                        <th><i class="fas fa-crown"></i> Kills</th>
                     </tr>
                 </thead>
                 <tbody id="resultados-body"></tbody>
@@ -93,12 +85,12 @@
         </section>
     </main>
 
-    <!-- Barra inferior -->
     <footer class="bottom-bar">
         <p>Informações adicionais em breve..</p>
     </footer>
 
-    <!-- Modal para o widget -->
+    <button id="openWidgetBtn">Abrir Widget de Arrecadação</button>
+
     <div id="widgetModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -114,7 +106,7 @@
 
             <div class="donation-info">
                 <p>Contribua para a premiação! Envie sua doação via Pix:</p>
-                <p class="pix-key">(54) 99276-7447</p> <!-- Chave Pix para editar -->
+                <p class="pix-key">(54) 99276-7447</p>
             </div>
         </div>
     </div>
@@ -138,7 +130,6 @@
 
                 timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-                // Se a contagem chegar a zero, exibe uma mensagem
                 if (distance < 0) {
                     clearInterval(x);
                     timerElement.innerHTML = "O campeonato começou!";
@@ -146,8 +137,48 @@
             }, 1000);
         }
 
-        // Inicia a contagem regressiva
-        startCountdown();
+        // Função para carregar os dados do JSON
+        async function carregarResultados() {
+            try {
+                const resposta = await fetch('dados.json'); // Nome do arquivo JSON
+                const dados = await resposta.json(); // Converte a resposta para JSON
+
+                const corpoClassificacao = document.getElementById('classificacao-body');
+                const corpoResultados = document.getElementById('resultados-body');
+
+                // Preenchendo a tabela de resultados
+                dados.partidas[0].resultados.forEach((resultado, index) => {
+                    const linhaResultados = `
+                        <tr>
+                            <td>${resultado.posicao}</td>
+                            <td>${resultado.dupla}</td>
+                            <td>${resultado.kills}</td>
+                        </tr>
+                    `;
+                    corpoResultados.innerHTML += linhaResultados; // Adiciona a linha à tabela de resultados
+
+                    // Para a tabela de classificação geral, pode-se usar o mesmo resultado ou outra lógica
+                    const pontuacaoTotal = resultado.kills * 2; // Exemplo de cálculo da pontuação
+                    const linhaClassificacao = `
+                        <tr>
+                            <td>${resultado.posicao}</td>
+                            <td>${resultado.dupla}</td>
+                            <td>${resultado.kills}</td>
+                            <td>${pontuacaoTotal}</td>
+                        </tr>
+                    `;
+                    corpoClassificacao.innerHTML += linhaClassificacao; // Adiciona a linha à tabela de classificação
+                });
+            } catch (erro) {
+                console.error('Erro ao carregar os dados:', erro);
+            }
+        }
+
+        // Chama a função para carregar os dados quando a página carrega
+        document.addEventListener('DOMContentLoaded', () => {
+            startCountdown();
+            carregarResultados();
+        });
 
         // Função para abrir o modal
         const openWidgetBtn = document.getElementById("openWidgetBtn");
@@ -181,18 +212,18 @@
         // Atualiza a barra de progresso
         let progressBarWidget = document.getElementById('progressBarWidget');
         progressBarWidget.style.width = percentualWidget + '%';
-        progressBarWidget.innerText = Math.min(percentualWidget, 100).toFixed(0) + '%';  // Exibe no máximo 100%
+        progressBarWidget.innerText = Math.min(percentualWidget, 100).toFixed(0) + '%';
 
         // Altera a cor da barra de acordo com o valor arrecadado
         if (percentualWidget >= 100) {
-            progressBarWidget.style.backgroundColor = 'red';  // Cor vermelha ao atingir ou ultrapassar 100%
+            progressBarWidget.style.backgroundColor = 'red';
         } else if (percentualWidget >= 80) {
-            progressBarWidget.style.backgroundColor = 'orange';  // Cor laranja para mais de 80%
+            progressBarWidget.style.backgroundColor = 'orange';
         } else if (percentualWidget >= 50) {
-            progressBarWidget.style.backgroundColor = 'yellow';  // Cor amarela para mais de 50%
-            progressBarWidget.style.color = '#333';  // Texto escuro para contraste
+            progressBarWidget.style.backgroundColor = 'yellow';
+            progressBarWidget.style.color = '#333';
         } else {
-            progressBarWidget.style.backgroundColor = '#28a745';  // Cor verde inicial
+            progressBarWidget.style.backgroundColor = '#28a745';
         }
     </script>
 </body>
