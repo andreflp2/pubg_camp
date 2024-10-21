@@ -8,8 +8,8 @@
 /* Estilo Global */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #201c1a; /* Fundo escuro */
-    color: #eaeaea; /* Texto claro */
+    background-color: #5A3E29; /* Fundo marrom */
+    color: #FFFFFF; /* Texto branco */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,8 +17,8 @@ body {
 
 /* Estilo da barra superior */
 .top-bar {
-    background-color: #4a4a4a;
-    color: #fff;
+    background-color: #FF9800; /* Laranja */
+    color: #FFFFFF; /* Texto branco */
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -32,8 +32,8 @@ header {
 
 /* Contagem regressiva */
 .countdown {
-    background-color: #4a4a4a;
-    color: #fff;
+    background-color: #FF9800; /* Laranja */
+    color: #5A3E29; /* Texto marrom */
     padding: 15px;
     border-radius: 8px;
     font-size: 20px;
@@ -59,20 +59,20 @@ section {
 }
 
 .table th, .table td {
-    border: 1px solid #4a4a4a;
+    border: 1px solid #FF9800; /* Borda laranja */
     padding: 10px;
     text-align: center;
 }
 
 .table th {
-    background-color: #4a4a4a;
-    color: #fff;
+    background-color: #5A3E29; /* Marrom para cabeçalho */
+    color: #FF9800; /* Texto laranja */
 }
 
 /* Estilo da barra inferior */
 .bottom-bar {
-    background-color: #4a4a4a;
-    color: #fff;
+    background-color: #FF9800; /* Laranja */
+    color: #FFFFFF; /* Texto branco */
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -80,8 +80,8 @@ section {
 
 /* Estilo do botão do widget */
 #openWidgetBtn {
-    background-color: #4a4a4a;
-    color: #fff;
+    background-color: #5A3E29; /* Marrom */
+    color: #FF9800; /* Texto laranja */
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -99,21 +99,21 @@ section {
     width: 100%; /* Largura total */
     height: 100%; /* Altura total */
     overflow: auto; /* Habilitar rolagem se necessário */
-    background-color: rgba(0,0,0,0.5); /* Cor de fundo */
+    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo */
 }
 
 /* Conteúdo do modal */
 .modal-content {
-    background-color: #201c1a;
+    background-color: #5A3E29; /* Marrom */
     margin: 15% auto; /* 15% do topo e centralizado */
     padding: 20px;
-    border: 1px solid #4a4a4a;
+    border: 1px solid #FF9800; /* Borda laranja */
     width: 80%; /* Pode ser ajustado */
 }
 
 /* Estilo do botão de fechar */
 .close {
-    color: #aaa;
+    color: #FF9800; /* Laranja */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -121,7 +121,7 @@ section {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: white; /* Texto branco ao passar o mouse */
     text-decoration: none;
     cursor: pointer;
 }
@@ -129,7 +129,7 @@ section {
 /* Estilo da barra de progresso do widget */
 .progress-bar-container {
     width: 100%;
-    background-color: #4a4a4a;
+    background-color: #FF9800; /* Laranja */
     border-radius: 5px;
     overflow: hidden; /* Esconder o que ultrapassar */
 }
@@ -137,10 +137,10 @@ section {
 .progress-bar {
     height: 20px;
     width: 0;
-    background-color: #28a745; /* Cor inicial */
+    background-color: #5A3E29; /* Marrom */
     text-align: center; /* Alinhamento do texto */
     line-height: 20px; /* Centralizar verticalmente o texto */
-    color: white; /* Cor do texto */
+    color: #FFFFFF; /* Texto branco */
 }
 
 /* Estilo da seção de pontuação */
@@ -151,6 +151,6 @@ section {
 /* Estilo do texto da chave Pix */
 .pix-key {
     font-weight: bold;
-    color: #00ff00; /* Cor para destacar a chave Pix */
+    color: #FF9800; /* Laranja para destacar a chave Pix */
     font-size: 1.2em; /* Aumentar um pouco o tamanho */
 }
