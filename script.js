@@ -3,19 +3,29 @@ let currentPartida = 0;
 
 async function loadData() {
     try {
-        const response = await fetch('https://raw.githubusercontent.com/andreflp2/camp/main/data.json');
+        const response = await fetch('data.json'); // Caminho para o arquivo JSON
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`); // Lança um erro se a resposta não for 200
+        }
         const data = await response.json();
         partidas = data.partidas;
 
-        // Iniciar na última partida
-        currentPartida = partidas.length - 1;
+        if (partidas.length === 0) {
+            displayError("Não há dados disponíveis."); // Exibe mensagem se não houver partidas
+            toggleNavigationButtons(false); // Oculta os botões se não houver partidas
+            return;
+        }
+
+        // Iniciar na primeira partida
+        currentPartida = 0;
 
         updateTable();
         updateClassificacao();
         updatePartidaInfo();
         updateNavigationButtons();
+        toggleNavigationButtons(true); // Exibe os botões se houver partidas
     } catch (error) {
-        displayError("Erro ao carregar os dados.");
+        displayError("Erro ao carregar os dados: " + error.message); // Exibe a mensagem de erro
     }
 }
 
@@ -29,9 +39,7 @@ function updateTable() {
         row.innerHTML = `
             <td>${index + 1}</td>
             <td>${item.dupla}</td>
-            <td>${item.posicao === 1 ? 1 : 0}</td>
             <td>${item.kills}</td>
-            <td>${calculatePontuacao(item.posicao, item.kills)}</td>
         `;
         tbody.appendChild(row);
     });
@@ -68,7 +76,6 @@ function updateClassificacao() {
         row.innerHTML = `
             <td>${index + 1}</td>
             <td>${item.dupla}</td>
-            <td>${item.vitórias}</td>
             <td>${item.kills}</td>
             <td>${item.pontuacao_total}</td>
         `;
@@ -83,7 +90,15 @@ function updatePartidaInfo() {
 
 function updateNavigationButtons() {
     document.getElementById('prev-button').disabled = currentPartida === 0;
-    document.getElementById('next-button').disabled = currentPartida === partidas.length - 1 || partidas.length === 1; // Desativa se houver apenas uma partida
+    document.getElementById('next-button').disabled = currentPartida === partidas.length - 1; // Desativa se houver apenas uma partida
+}
+
+function toggleNavigationButtons(show) {
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+
+    prevButton.style.display = show ? 'inline-block' : 'none';
+    nextButton.style.display = show ? 'inline-block' : 'none';
 }
 
 function changePartida(direction) {
