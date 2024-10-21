@@ -7,8 +7,8 @@ async function loadData() {
         const data = await response.json();
         partidas = data.partidas;
 
-        // Iniciar na última partida
-        currentPartida = partidas.length - 1;
+        // Iniciar na primeira partida
+        currentPartida = 0;
 
         updateTable();
         updateClassificacao();
