@@ -85,6 +85,43 @@
             background-color: #ccc; /* Cor para botões desabilitados */
             cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
         }
+
+        /* Estilo do modal */
+        .modal {
+            display: none; /* Oculto por padrão */
+            position: fixed; /* Fica fixo na tela */
+            z-index: 1; /* Fica na frente de outros elementos */
+            left: 0;
+            top: 0;
+            width: 100%; /* Largura total */
+            height: 100%; /* Altura total */
+            overflow: auto; /* Ativa o scroll se necessário */
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% da parte superior e centralizado */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; /* Largura do modal */
+            border-radius: 10px; /* Borda arredondada */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -161,12 +198,36 @@
             <h3>Pontuação Total:</h3>
             <p>Inclui as kills realizadas durante a competição.</p>
         </section>
+
+        <!-- Botão para abrir o widget -->
+        <button id="openWidgetBtn">Abrir Widget de Arrecadação</button>
     </main>
 
     <!-- Barra inferior -->
     <footer class="bottom-bar">
         <p>Informações adicionais em breve..</p>
     </footer>
+
+    <!-- Modal para o widget -->
+    <div id="widgetModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="font-size: 18px; color: #333; margin-bottom: 10px;">Arrecadação</h2>
+
+            <div style="font-size: 16px; margin-bottom: 10px; color: #555;">
+                <p>Arrecadado: R$ <span id="valorAtualWidget">0,00</span></p>
+            </div>
+
+            <div style="position: relative; background-color: #e0e0e0; border-radius: 20px; height: 20px; overflow: hidden;">
+                <div id="progressBarWidget" style="height: 100%; border-radius: 20px; text-align: center; color: #fff; font-size: 12px; line-height: 20px; width: 0%; background-color: #28a745;">0%</div>
+            </div>
+
+            <div style="font-size: 14px; color: #333; margin-top: 10px;">
+                <p>Doe via Pix:</p>
+                <p style="font-weight: bold; color: #28a745;">pix-ficticio@exemplo.com</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Custom JS -->
     <script src="script.js"></script>
@@ -197,6 +258,52 @@
 
         // Inicia a contagem regressiva
         startCountdown();
+
+        // Função para abrir o modal
+        const openWidgetBtn = document.getElementById("openWidgetBtn");
+        const modal = document.getElementById("widgetModal");
+        const span = document.getElementsByClassName("close")[0];
+
+        openWidgetBtn.onclick = function() {
+            modal.style.display = "block"; // Exibe o modal
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none"; // Fecha o modal ao clicar na cruz
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none"; // Fecha o modal se clicar fora dele
+            }
+        }
+
+        // Valor arrecadado e meta (editáveis)
+        let valorAtualWidget = 50;  // Valor atual em reais
+        let metaWidget = 100;  // Meta em reais
+
+        // Atualiza o valor exibido
+        document.getElementById('valorAtualWidget').innerText = valorAtualWidget.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+        // Calcula a porcentagem arrecadada
+        let percentualWidget = (valorAtualWidget / metaWidget) * 100;
+
+        // Atualiza a barra de progresso
+        let progressBarWidget = document.getElementById('progressBarWidget');
+        progressBarWidget.style.width = percentualWidget + '%';
+        progressBarWidget.innerText = Math.min(percentualWidget, 100).toFixed(0) + '%';  // Exibe no máximo 100%
+
+        // Altera a cor da barra de acordo com o valor arrecadado
+        if (percentualWidget >= 100) {
+            progressBarWidget.style.backgroundColor = 'red';  // Cor vermelha ao atingir ou ultrapassar 100%
+        } else if (percentualWidget >= 80) {
+            progressBarWidget.style.backgroundColor = 'orange';  // Cor laranja para mais de 80%
+        } else if (percentualWidget >= 50) {
+            progressBarWidget.style.backgroundColor = 'yellow';  // Cor amarela para mais de 50%
+            progressBarWidget.style.color = '#333';  // Texto escuro para contraste
+        } else {
+            progressBarWidget.style.backgroundColor = '#28a745';  // Cor verde inicial
+        }
     </script>
 </body>
 </html>
