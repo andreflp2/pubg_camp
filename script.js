@@ -1,34 +1,40 @@
+// Variáveis globais
 let partidas = [];
 let currentPartida = 0;
 
+// -------------------------
+// Lógica do Campeonato
+// -------------------------
+
+// Função para carregar dados do campeonato
 async function loadData() {
     try {
-        const response = await fetch('data.json'); // Caminho para o arquivo JSON
+        const response = await fetch('https://raw.githubusercontent.com/andreflp2/pubg_camp/refs/heads/main/data.json'); // URL do JSON
         if (!response.ok) {
-            throw new Error(`Erro HTTP: ${response.status}`); // Lança um erro se a resposta não for 200
+            throw new Error(`Erro HTTP: ${response.status}`);
         }
         const data = await response.json();
         partidas = data.partidas;
 
         if (partidas.length === 0) {
-            displayError("Não há dados disponíveis."); // Exibe mensagem se não houver partidas
-            toggleNavigationButtons(false); // Oculta os botões se não houver partidas
+            displayError("Não há dados disponíveis.");
+            toggleNavigationButtons(false);
             return;
         }
 
-        // Iniciar na primeira partida
         currentPartida = 0;
 
         updateTable();
         updateClassificacao();
         updatePartidaInfo();
         updateNavigationButtons();
-        toggleNavigationButtons(true); // Exibe os botões se houver partidas
+        toggleNavigationButtons(true);
     } catch (error) {
-        displayError("Erro ao carregar os dados: " + error.message); // Exibe a mensagem de erro
+        displayError("Erro ao carregar os dados: " + error.message);
     }
 }
 
+// Função para atualizar a tabela de resultados da partida atual
 function updateTable() {
     const tbody = document.getElementById('resultados-body');
     tbody.innerHTML = '';
@@ -45,11 +51,13 @@ function updateTable() {
     });
 }
 
+// Função para calcular a pontuação com base na posição e nas kills
 function calculatePontuacao(posicao, kills) {
-    const pontosPorPosicao = [0, 10, 8, 6, 4, 2]; // Pontuação por posição
-    return (pontosPorPosicao[posicao] || 0) + kills; // Adiciona kills ao total de pontos
+    const pontosPorPosicao = [0, 10, 8, 6, 4, 2];
+    return (pontosPorPosicao[posicao] || 0) + kills;
 }
 
+// Função para atualizar a classificação geral
 function updateClassificacao() {
     const tbody = document.getElementById('classificacao-body');
     tbody.innerHTML = '';
@@ -83,14 +91,16 @@ function updateClassificacao() {
     });
 }
 
+// Função para atualizar informações da partida atual
 function updatePartidaInfo() {
     const partidaInfo = document.getElementById('partida-info');
     partidaInfo.textContent = `Partida ${currentPartida + 1} de ${partidas.length}`;
 }
 
+// Função para atualizar os botões de navegação
 function updateNavigationButtons() {
     document.getElementById('prev-button').disabled = currentPartida === 0;
-    document.getElementById('next-button').disabled = currentPartida === partidas.length - 1; // Desativa se houver apenas uma partida
+    document.getElementById('next-button').disabled = currentPartida === partidas.length - 1;
 }
 
 function toggleNavigationButtons(show) {
@@ -101,6 +111,7 @@ function toggleNavigationButtons(show) {
     nextButton.style.display = show ? 'inline-block' : 'none';
 }
 
+// Função para mudar de partida
 function changePartida(direction) {
     currentPartida += direction;
     updateTable();
@@ -115,6 +126,32 @@ document.getElementById('next-button').addEventListener('click', () => changePar
 function displayError(message) {
     alert(message);
 }
+
+// -------------------------
+// Lógica da Arrecadação
+// -------------------------
+
+// Evento para abrir e fechar o modal de arrecadação
+const widgetModal = document.getElementById('widgetModal');
+const openWidgetBtn = document.getElementById('openWidgetBtn');
+const closeWidgetBtn = document.getElementsByClassName('close')[0];
+
+// Função para abrir o modal
+openWidgetBtn.onclick = function() {
+    widgetModal.style.display = "block";
+};
+
+// Função para fechar o modal
+closeWidgetBtn.onclick = function() {
+    widgetModal.style.display = "none";
+};
+
+// Fechar o modal se o usuário clicar fora do conteúdo
+window.onclick = function(event) {
+    if (event.target === widgetModal) {
+        widgetModal.style.display = "none";
+    }
+};
 
 // Carregar dados ao iniciar
 document.addEventListener('DOMContentLoaded', loadData);
