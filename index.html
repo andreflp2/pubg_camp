@@ -13,6 +13,19 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Estilo para a contagem regressiva */
+        .countdown {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,6 +37,11 @@
     <header>
         <h1>Campeonato de Duplas Clan [VIN]</h1>
     </header>
+
+    <!-- Contagem Regressiva -->
+    <div class="countdown" id="countdown">
+        A contagem regressiva para o campeonato começa em: <span id="timer"></span>
+    </div>
 
     <main class="container">
         <section>
@@ -96,6 +114,34 @@
 
     <!-- Custom JS -->
     <script src="script.js"></script>
+    <script>
+        // Função para calcular a contagem regressiva
+        function startCountdown() {
+            const countDownDate = new Date("November 9, 2024 00:00:00").getTime();
 
+            const timerElement = document.getElementById("timer");
+
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                // Se a contagem chegar a zero, exibe uma mensagem
+                if (distance < 0) {
+                    clearInterval(x);
+                    timerElement.innerHTML = "O campeonato começou!";
+                }
+            }, 1000);
+        }
+
+        // Inicia a contagem regressiva
+        startCountdown();
+    </script>
 </body>
 </html>
