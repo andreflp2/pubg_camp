@@ -8,7 +8,7 @@
 /* Estilo Global */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #5A3E29; /* Fundo marrom */
+    background-color: #2C2C2C; /* Fundo cinza escuro */
     color: #FFFFFF; /* Texto branco */
     display: flex;
     flex-direction: column;
@@ -17,11 +17,12 @@ body {
 
 /* Estilo da barra superior */
 .top-bar {
-    background-color: #FF9800; /* Laranja */
+    background-color: #007BFF; /* Azul metálico */
     color: #FFFFFF; /* Texto branco */
-    padding: 10px 20px;
+    padding: 15px 20px;
     width: 100%;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Sombra suave */
 }
 
 /* Estilo do cabeçalho */
@@ -32,11 +33,12 @@ header {
 
 /* Contagem regressiva */
 .countdown {
-    background-color: #FF9800; /* Laranja */
-    color: #5A3E29; /* Texto marrom */
-    padding: 15px;
+    background-color: #007BFF; /* Azul metálico */
+    color: #FFFFFF; /* Texto branco */
+    padding: 20px;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra para profundidade */
 }
 
 /* Estilo do contêiner principal */
@@ -59,19 +61,24 @@ section {
 }
 
 .table th, .table td {
-    border: 1px solid #FF9800; /* Borda laranja */
-    padding: 10px;
+    border: 1px solid #007BFF; /* Borda azul metálico */
+    padding: 15px;
     text-align: center;
 }
 
 .table th {
-    background-color: #5A3E29; /* Marrom para cabeçalho */
-    color: #FF9800; /* Texto laranja */
+    background-color: #5A5A5A; /* Cinza escuro para cabeçalho */
+    color: #007BFF; /* Texto azul */
+}
+
+/* Efeito de hover nas linhas da tabela */
+.table tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.2); /* Azul suave ao passar o mouse */
 }
 
 /* Estilo da barra inferior */
 .bottom-bar {
-    background-color: #FF9800; /* Laranja */
+    background-color: #007BFF; /* Azul metálico */
     color: #FFFFFF; /* Texto branco */
     padding: 10px 20px;
     width: 100%;
@@ -80,13 +87,21 @@ section {
 
 /* Estilo do botão do widget */
 #openWidgetBtn {
-    background-color: #5A3E29; /* Marrom */
-    color: #FF9800; /* Texto laranja */
+    background-color: #5A5A5A; /* Cinza escuro */
+    color: #007BFF; /* Texto azul metálico */
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave */
+}
+
+#openWidgetBtn:hover {
+    background-color: #007BFF; /* Azul metálico ao passar o mouse */
+    color: #FFFFFF; /* Texto branco ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
 }
 
 /* Estilo do modal */
@@ -99,21 +114,22 @@ section {
     width: 100%; /* Largura total */
     height: 100%; /* Altura total */
     overflow: auto; /* Habilitar rolagem se necessário */
-    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo */
+    background-color: rgba(0, 0, 0, 0.8); /* Cor de fundo semi-transparente */
 }
 
 /* Conteúdo do modal */
 .modal-content {
-    background-color: #5A3E29; /* Marrom */
+    background-color: #3A3A3A; /* Cinza mais claro */
     margin: 15% auto; /* 15% do topo e centralizado */
     padding: 20px;
-    border: 1px solid #FF9800; /* Borda laranja */
+    border: 1px solid #007BFF; /* Borda azul metálico */
     width: 80%; /* Pode ser ajustado */
+    border-radius: 8px; /* Bordas arredondadas */
 }
 
 /* Estilo do botão de fechar */
 .close {
-    color: #FF9800; /* Laranja */
+    color: #007BFF; /* Azul metálico */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -121,7 +137,7 @@ section {
 
 .close:hover,
 .close:focus {
-    color: white; /* Texto branco ao passar o mouse */
+    color: #FFFFFF; /* Texto branco ao passar o mouse */
     text-decoration: none;
     cursor: pointer;
 }
@@ -129,7 +145,7 @@ section {
 /* Estilo da barra de progresso do widget */
 .progress-bar-container {
     width: 100%;
-    background-color: #FF9800; /* Laranja */
+    background-color: #007BFF; /* Azul metálico */
     border-radius: 5px;
     overflow: hidden; /* Esconder o que ultrapassar */
 }
@@ -137,7 +153,7 @@ section {
 .progress-bar {
     height: 20px;
     width: 0;
-    background-color: #5A3E29; /* Marrom */
+    background-color: #5A5A5A; /* Cinza escuro */
     text-align: center; /* Alinhamento do texto */
     line-height: 20px; /* Centralizar verticalmente o texto */
     color: #FFFFFF; /* Texto branco */
@@ -146,11 +162,26 @@ section {
 /* Estilo da seção de pontuação */
 .pontuacao-info {
     margin-top: 20px;
+    background-color: #3A3A3A; /* Fundo cinza claro */
+    padding: 20px;
+    border-radius: 8px;
 }
 
 /* Estilo do texto da chave Pix */
 .pix-key {
     font-weight: bold;
-    color: #FF9800; /* Laranja para destacar a chave Pix */
+    color: #007BFF; /* Azul metálico para destacar a chave Pix */
     font-size: 1.2em; /* Aumentar um pouco o tamanho */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    .table {
+        font-size: 14px; /* Ajustar o tamanho da fonte para telas menores */
+    }
 }
