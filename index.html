@@ -17,15 +17,68 @@
     <style>
         /* Estilo para a contagem regressiva */
         .countdown {
-            font-size: 2em; /* Aumentei o tamanho da fonte */
+            font-size: 2em;
             text-align: center;
             margin: 20px 0;
-            background-color: #ff5733; /* Cor de fundo mais chamativa */
-            color: white; /* Cor do texto */
-            padding: 20px; /* Aumentei o padding */
-            border-radius: 10px; /* Bordas arredondadas */
-            border: 2px solid #c70039; /* Borda chamativa */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+            background-color: #ff5733; /* Cor de fundo */
+            color: #fff; /* Cor do texto */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c70039;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo para tabelas */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f4f4f4;
+        }
+
+        /* Estilo para a barra inferior */
+        .bottom-bar {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f1f1f1;
+        }
+
+        /* Estilo da barra superior */
+        .top-bar {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -38,12 +91,12 @@
 
     <header>
         <h1>Campeonato dias 09 e 10 de novembro</h1>
-        <h1>Duplas Clan [VIN]</h1>
+        <h2>Duplas Clan [VIN]</h2>
     </header>
 
     <!-- Contagem Regressiva -->
     <div class="countdown" id="countdown">
-        Campeonato nos começa em: <span id="timer"></span>
+        O campeonato começa em: <span id="timer"></span>
     </div>
 
     <main class="container">
@@ -121,10 +174,9 @@
         // Função para calcular a contagem regressiva
         function startCountdown() {
             const countDownDate = new Date("November 9, 2024 00:00:00").getTime();
-
             const timerElement = document.getElementById("timer");
 
-            const x = setInterval(function() {
+            const x = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
 
@@ -133,7 +185,7 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
                 // Se a contagem chegar a zero, exibe uma mensagem
                 if (distance < 0) {
