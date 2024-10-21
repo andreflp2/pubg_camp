@@ -86,6 +86,26 @@
             cursor: not-allowed; /* Muda o cursor para indicar que não é clicável */
         }
 
+        /* Estilo do botão do widget */
+        #openWidgetBtn {
+            position: fixed; /* Fica fixo na tela */
+            top: 20px; /* Distância do topo */
+            right: 20px; /* Distância da direita */
+            background-color: #28a745; /* Cor do botão */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Para ficar acima de outros elementos */
+        }
+
+        #openWidgetBtn:hover {
+            background-color: #218838; /* Cor ao passar o mouse */
+        }
+
         /* Estilo do modal */
         .modal {
             display: none; /* Oculto por padrão */
@@ -198,15 +218,15 @@
             <h3>Pontuação Total:</h3>
             <p>Inclui as kills realizadas durante a competição.</p>
         </section>
-
-        <!-- Botão para abrir o widget -->
-        <button id="openWidgetBtn">Abrir Widget de Arrecadação</button>
     </main>
 
     <!-- Barra inferior -->
     <footer class="bottom-bar">
         <p>Informações adicionais em breve..</p>
     </footer>
+
+    <!-- Botão para abrir o widget -->
+    <button id="openWidgetBtn">Abrir Widget de Arrecadação</button>
 
     <!-- Modal para o widget -->
     <div id="widgetModal" class="modal">
@@ -219,12 +239,12 @@
             </div>
 
             <div style="position: relative; background-color: #e0e0e0; border-radius: 20px; height: 20px; overflow: hidden;">
-                <div id="progressBarWidget" style="height: 100%; border-radius: 20px; text-align: center; color: #fff; font-size: 12px; line-height: 20px; width: 0%; background-color: #28a745;">0%</div>
+                <div id="progressBarWidget" style="height: 100%; width: 0%; background-color: green; color: white; text-align: center; line-height: 20px; transition: width 0.4s ease;"></div>
             </div>
 
-            <div style="font-size: 14px; color: #333; margin-top: 10px;">
-                <p>Doe via Pix:</p>
-                <p style="font-weight: bold; color: #28a745;">pix-ficticio@exemplo.com</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>Contribua para a premiação! Envie sua doação via Pix:</p>
+                <p style="font-weight: bold; color: #4caf50;">pix-ficticio@exemplo.com</p> <!-- Chave Pix para editar -->
             </div>
         </div>
     </div>
@@ -279,7 +299,7 @@
         }
 
         // Valor arrecadado e meta (editáveis)
-        let valorAtualWidget = 0;  // Valor atual em reais
+        let valorAtualWidget = 50;  // Valor atual em reais
         let metaWidget = 100;  // Meta em reais
 
         // Atualiza o valor exibido
