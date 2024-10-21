@@ -4,30 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campeonato de Duplas Clan [VIN]</title>
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div class="top-bar">
         <h2>Campeonato de Duplas Clan [VIN]</h2>
     </div>
-
     <header>
         <h1>Dias 09 e 10 de novembro</h1>
     </header>
-
     <div class="countdown" id="countdown">
         O campeonato começa em: <span id="timer"></span>
     </div>
-
     <main class="container">
         <section>
             <h2>Classificação Geral</h2>
@@ -43,7 +33,6 @@
                 <tbody id="classificacao-body"></tbody>
             </table>
         </section>
-
         <section>
             <h2>Resultados por Partida</h2>
             <div class="navigation">
@@ -55,7 +44,6 @@
                     Próximo <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-
             <table class="table">
                 <thead>
                     <tr>
@@ -67,10 +55,8 @@
                 <tbody id="resultados-body"></tbody>
             </table>
         </section>
-
         <section class="pontuacao-info">
             <p><strong>A classificação geral é a soma das vitórias e kills dos participantes.</strong></p>
-            
             <h3>Pontuação Base:</h3>
             <ul>
                 <li><strong>1ª posição:</strong> 10 pontos</li>
@@ -79,39 +65,24 @@
                 <li><strong>4ª posição:</strong> 4 pontos</li>
                 <li><strong>5ª posição:</strong> 2 pontos</li>
             </ul>
-            
             <h3>Pontuação Total:</h3>
             <p>Inclui as kills realizadas durante a competição.</p>
         </section>
     </main>
-
     <footer class="bottom-bar">
         <p>Informações adicionais em breve..</p>
     </footer>
-
-    <button id="openWidgetBtn">Abrir Widget de Arrecadação</button>
-
+    <button id="openWidgetBtn">R$ <span id="valorAtualWidget">0,00</span></button>
     <div id="widgetModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Arrecadação</h2>
-
             <div>
-                <p>Arrecadado: R$ <span id="valorAtualWidget">0,00</span></p>
-            </div>
-
-            <div class="progress-bar-container">
-                <div id="progressBarWidget" class="progress-bar"></div>
-            </div>
-
-            <div class="donation-info">
                 <p>Contribua para a premiação! Envie sua doação via Pix:</p>
                 <p class="pix-key">(54) 99276-7447</p>
             </div>
         </div>
     </div>
-
-    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 </html>
