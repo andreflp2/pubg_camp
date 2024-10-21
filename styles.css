@@ -13,157 +13,144 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    justify-content: space-between;
 }
 
-/* Estilo da Seção de Pontuação */
-.pontuacao-info {
-    background-color: #2a2a2a; /* Fundo mais suave */
-    color: #dfab45; /* Texto dourado para destaque */
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px; /* Espaço antes da barra inferior */
-    text-align: center; /* Centralizar o texto */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Sombra suave */
-}
-
-/* Barra Superior */
+/* Estilo da barra superior */
 .top-bar {
+    background-color: #4a4a4a;
+    color: #fff;
+    padding: 10px 20px;
     width: 100%;
-    background-color: #dfab45; /* Azul profissional */
-    color: #201c1a; /* Texto escuro */
-    padding: 15px 0;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave */
 }
 
-.top-bar h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 500; /* Peso da fonte mais leve */
-}
-
-/* Barra Inferior */
-.bottom-bar {
-    width: 100%;
-    background-color: #dfab45; /* Azul profissional */
-    color: #201c1a; /* Texto escuro */
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-}
-
-.bottom-bar p {
-    margin: 0;
-    font-size: 1rem;
-}
-
-/* Estilo do Cabeçalho */
+/* Estilo do cabeçalho */
 header {
+    text-align: center;
     margin: 20px 0;
-    text-align: center;
 }
 
-h1 {
-    color: #dfab45; /* Destaque em dourado */
-    font-size: 2.5rem;
-    font-weight: 700; /* Peso da fonte mais forte */
+/* Contagem regressiva */
+.countdown {
+    background-color: #4a4a4a;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 20px;
 }
 
-/* Estilo do Container */
+/* Estilo do contêiner principal */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-bottom: 60px; /* Para evitar sobreposição com a barra inferior */
+    max-width: 800px;
+    margin: 20px;
+    padding: 10px;
 }
 
-/* Estilo dos Títulos */
-h2 {
-    color: #dfab45; /* Destaque em dourado */
-    font-size: 2rem;
-    margin-bottom: 10px;
-    text-align: center;
+/* Estilo das seções */
+section {
+    margin-bottom: 30px;
 }
 
-/* Estilo da Tabela */
+/* Estilo das tabelas */
 .table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #2a2a2a; /* Fundo escuro da tabela */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.table th, .table td {
-    padding: 15px; /* Mais espaço nas células */
-    text-align: center;
-    border-bottom: 1px solid #444; /* Borda sutil */
-}
-
-/* Estilo das Células da Tabela */
-.table th {
-    background-color: #dfab45; /* Fundo dourado para cabeçalho */
-    color: #201c1a; /* Texto escuro */
-    text-transform: uppercase;
-    font-weight: 500; /* Peso da fonte mais leve */
-}
-
-/* Efeito de Hover nas Linhas da Tabela */
-.table tbody tr:hover {
-    background-color: rgba(223, 171, 69, 0.5); /* Efeito de hover */
-}
-
-/* Efeitos de Estilo Adicionais para Navegação */
-.navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
     margin-bottom: 20px;
 }
 
-.navigation button {
-    padding: 10px 15px;
-    background-color: #dfab45; /* Azul profissional */
-    color: #201c1a; /* Texto escuro */
+.table th, .table td {
+    border: 1px solid #4a4a4a;
+    padding: 10px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #4a4a4a;
+    color: #fff;
+}
+
+/* Estilo da barra inferior */
+.bottom-bar {
+    background-color: #4a4a4a;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Estilo do botão do widget */
+#openWidgetBtn {
+    background-color: #4a4a4a;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Adicionando sombra */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-.navigation button:disabled {
-    background-color: #555; /* Cinza escuro para botões desabilitados */
-    cursor: not-allowed;
+/* Estilo do modal */
+.modal {
+    display: none; /* Ocultar o modal por padrão */
+    position: fixed; /* Ficar em cima de tudo */
+    z-index: 1; /* Ficar na frente */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilitar rolagem se necessário */
+    background-color: rgba(0,0,0,0.5); /* Cor de fundo */
 }
 
-.navigation button:hover {
-    background-color: #b1891e; /* Dourado mais escuro ao passar o mouse */
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra ao passar o mouse */
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #201c1a;
+    margin: 15% auto; /* 15% do topo e centralizado */
+    padding: 20px;
+    border: 1px solid #4a4a4a;
+    width: 80%; /* Pode ser ajustado */
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .container {
-        width: 100%;
-        padding: 0 10px;
-    }
+/* Estilo do botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-    .table {
-        font-size: 14px; /* Tamanho da fonte ajustado para telas menores */
-    }
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
-    .navigation button {
-        font-size: 12px; /* Tamanho da fonte dos botões ajustado */
-    }
+/* Estilo da barra de progresso do widget */
+.progress-bar-container {
+    width: 100%;
+    background-color: #4a4a4a;
+    border-radius: 5px;
+    overflow: hidden; /* Esconder o que ultrapassar */
+}
+
+.progress-bar {
+    height: 20px;
+    width: 0;
+    background-color: #28a745; /* Cor inicial */
+    text-align: center; /* Alinhamento do texto */
+    line-height: 20px; /* Centralizar verticalmente o texto */
+    color: white; /* Cor do texto */
+}
+
+/* Estilo da seção de pontuação */
+.pontuacao-info {
+    margin-top: 20px;
+}
+
+/* Estilo do texto da chave Pix */
+.pix-key {
+    font-weight: bold;
+    color: #00ff00; /* Cor para destacar a chave Pix */
+    font-size: 1.2em; /* Aumentar um pouco o tamanho */
 }
