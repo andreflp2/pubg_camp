@@ -1,0 +1,169 @@
+/* Reset de Margin e Padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo Global */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #201c1a; /* Fundo escuro */
+    color: #eaeaea; /* Texto claro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+/* Estilo da Seção de Pontuação */
+.pontuacao-info {
+    background-color: #2a2a2a; /* Fundo mais suave */
+    color: #dfab45; /* Texto dourado para destaque */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Espaço antes da barra inferior */
+    text-align: center; /* Centralizar o texto */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Sombra suave */
+}
+
+/* Barra Superior */
+.top-bar {
+    width: 100%;
+    background-color: #dfab45; /* Azul profissional */
+    color: #201c1a; /* Texto escuro */
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave */
+}
+
+.top-bar h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500; /* Peso da fonte mais leve */
+}
+
+/* Barra Inferior */
+.bottom-bar {
+    width: 100%;
+    background-color: #dfab45; /* Azul profissional */
+    color: #201c1a; /* Texto escuro */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-bar p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Estilo do Cabeçalho */
+header {
+    margin: 20px 0;
+    text-align: center;
+}
+
+h1 {
+    color: #dfab45; /* Destaque em dourado */
+    font-size: 2.5rem;
+    font-weight: 700; /* Peso da fonte mais forte */
+}
+
+/* Estilo do Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 60px; /* Para evitar sobreposição com a barra inferior */
+}
+
+/* Estilo dos Títulos */
+h2 {
+    color: #dfab45; /* Destaque em dourado */
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Estilo da Tabela */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2a2a2a; /* Fundo escuro da tabela */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.table th, .table td {
+    padding: 15px; /* Mais espaço nas células */
+    text-align: center;
+    border-bottom: 1px solid #444; /* Borda sutil */
+}
+
+/* Estilo das Células da Tabela */
+.table th {
+    background-color: #dfab45; /* Fundo dourado para cabeçalho */
+    color: #201c1a; /* Texto escuro */
+    text-transform: uppercase;
+    font-weight: 500; /* Peso da fonte mais leve */
+}
+
+/* Efeito de Hover nas Linhas da Tabela */
+.table tbody tr:hover {
+    background-color: rgba(223, 171, 69, 0.5); /* Efeito de hover */
+}
+
+/* Efeitos de Estilo Adicionais para Navegação */
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.navigation button {
+    padding: 10px 15px;
+    background-color: #dfab45; /* Azul profissional */
+    color: #201c1a; /* Texto escuro */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Adicionando sombra */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave */
+}
+
+.navigation button:disabled {
+    background-color: #555; /* Cinza escuro para botões desabilitados */
+    cursor: not-allowed;
+}
+
+.navigation button:hover {
+    background-color: #b1891e; /* Dourado mais escuro ao passar o mouse */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .table {
+        font-size: 14px; /* Tamanho da fonte ajustado para telas menores */
+    }
+
+    .navigation button {
+        font-size: 12px; /* Tamanho da fonte dos botões ajustado */
+    }
+}
