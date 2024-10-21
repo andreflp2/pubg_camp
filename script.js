@@ -7,8 +7,8 @@ async function loadData() {
         const data = await response.json();
         partidas = data.partidas;
 
-        // Iniciar na primeira partida
-        currentPartida = 0;
+        // Iniciar na última partida
+        currentPartida = partidas.length - 1;
 
         updateTable();
         updateClassificacao();
@@ -83,7 +83,7 @@ function updatePartidaInfo() {
 
 function updateNavigationButtons() {
     document.getElementById('prev-button').disabled = currentPartida === 0;
-    document.getElementById('next-button').disabled = currentPartida === partidas.length - 1;
+    document.getElementById('next-button').disabled = currentPartida === partidas.length - 1 || partidas.length === 1; // Desativa se houver apenas uma partida
 }
 
 function changePartida(direction) {
@@ -101,4 +101,5 @@ function displayError(message) {
     alert(message);
 }
 
+// Carregar dados ao iniciar
 document.addEventListener('DOMContentLoaded', loadData);
