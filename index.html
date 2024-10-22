@@ -4,85 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campeonato de Duplas Clan [VIN]</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top-bar">
-        <h2>Campeonato de Duplas Clan [VIN]</h2>
-    </div>
-    <header>
-        <h1>Dias 09 e 10 de novembro</h1>
-    </header>
-    <div class="countdown" id="countdown">
-        O campeonato começa em: <span id="timer"></span>
-    </div>
-    <main class="container">
-        <section>
-            <h2>Classificação Geral</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th><i class="fas fa-trophy"></i> Posição</th>
-                        <th><i class="fas fa-users"></i> Dupla</th>
-                        <th><i class="fas fa-crown"></i> Kills</th>
-                        <th><i class="fas fa-chart-line"></i> Pontuação Total</th>
-                    </tr>
-                </thead>
-                <tbody id="classificacao-body"></tbody>
-            </table>
-        </section>
-        <section>
-            <h2>Resultados por Partida</h2>
-            <div class="navigation">
-                <button id="prev-button" aria-label="Partida anterior" disabled>
-                    <i class="fas fa-chevron-left"></i> Anterior
-                </button>
-                <span id="partida-info">Partida 1 de 3</span>
-                <button id="next-button" aria-label="Próxima partida">
-                    Próximo <i class="fas fa-chevron-right"></i>
-                </button>
+    <div class="container">
+        <header class="header">
+            <h1>Campeonato de Duplas Clan [VIN]</h1>
+        </header>
+
+        <section class="tabelas-section">
+            <div class="classificacao-section">
+                <h3>Classificação Geral</h3>
+                <table id="classificacao">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Dupla</th>
+                            <th>Kills</th>
+                            <th>Pontuação Total</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th><i class="fas fa-trophy"></i> Posição</th>
-                        <th><i class="fas fa-users"></i> Dupla</th>
-                        <th><i class="fas fa-crown"></i> Kills</th>
-                    </tr>
-                </thead>
-                <tbody id="resultados-body"></tbody>
-            </table>
+        
+            <div class="resultados-section">
+                <h3>Resultados por Partida</h3>
+                <div class="navegacao">
+                    <button id="prevButton" disabled>&lt;</button>
+                    <span id="partidaInfo">Partida 4 de 4</span>
+                    <button id="nextButton">></button>
+                </div>
+        
+                <h4 id="mapName" class="map-name"></h4>
+        
+                <table id="resultados">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Dupla</th>
+                            <th>Kills</th>
+                            <th>Pontuação Total da Partida</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </section>
-        <section class="pontuacao-info">
-            <p><strong>A classificação geral é a soma das vitórias e kills dos participantes.</strong></p>
-            <h3>Pontuação Base:</h3>
+        
+
+        <div class="pontuacao-info">
+            <h3>Cálculo da Pontuação Total</h3>
+            <p><strong>Pontuação Base por Posição de cada partida:</strong></p>
             <ul>
-                <li><strong>1ª posição:</strong> 10 pontos</li>
-                <li><strong>2ª posição:</strong> 8 pontos</li>
-                <li><strong>3ª posição:</strong> 6 pontos</li>
-                <li><strong>4ª posição:</strong> 4 pontos</li>
-                <li><strong>5ª posição:</strong> 2 pontos</li>
+                <li>1ª: 10 pontos</li>
+                <li>2ª: 8 pontos</li>
+                <li>3ª: 6 pontos</li>
+                <li>4ª: 4 pontos</li>
+                <li>5ª: 2 pontos</li>
             </ul>
-            <h3>Pontuação Total:</h3>
-            <p>Inclui as kills realizadas durante a competição.</p>
-        </section>
-    </main>
-    <footer class="bottom-bar">
-        <p>Informações adicionais em breve..</p>
-    </footer>
-    <button id="openWidgetBtn">R$ <span id="valorAtualWidget">0,00</span></button>
-    <div id="widgetModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Arrecadação</h2>
-            <div>
-                <p>Contribua para a premiação! Envie sua doação via Pix:</p>
-                <p class="pix-key">(54) 99276-7447</p>
-            </div>
+            <p><strong>KILLS:</strong> Cada kill vale 1 ponto.</p>
+            <p><strong>Pontuação Total:</strong> Total = Pontuação Base + Kills.</p>
         </div>
+
     </div>
-    <script src="script.js"></script>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
