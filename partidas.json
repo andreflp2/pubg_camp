@@ -1,0 +1,68 @@
+{
+    "partidas": [
+        {
+            "matchNumber": 1,
+            "map": "Sanhok",
+            "vencedor": null,
+            "resultados": [
+                { "dupla": "Alemaofire13 & Xchumelax", "kills": 0 },
+                { "dupla": "Azafree22 & xA_N_D_R_Ex", "kills": 0 },
+                { "dupla": "Dedel & Yuri2099", "kills": 0 },
+                { "dupla": "Doomed_Aim & gambin_metaleiro", "kills": 0 },
+                { "dupla": "GAROX & Mateus_Sousa", "kills": 0 },
+                { "dupla": "Kisaki121 & Gabrielhoffmann", "kills": 0 },
+                { "dupla": "SALOMON_BR & LandersSA", "kills": 0 },
+                { "dupla": "WF_PROZIN & Xx_mota_xX10", "kills": 0 },
+                { "dupla": "Xandexande & Bruninho", "kills": 0 }
+            ]
+        },
+        {
+            "matchNumber": 2,
+            "map": "Vikendi",
+            "vencedor": null,
+            "resultados": [
+                { "dupla": "Alemaofire13 & Xchumelax", "kills": 0 },
+                { "dupla": "Azafree22 & xA_N_D_R_Ex", "kills": 0 },
+                { "dupla": "Dedel & Yuri2099", "kills": 0 },
+                { "dupla": "Doomed_Aim & gambin_metaleiro", "kills": 0 },
+                { "dupla": "GAROX & Mateus_Sousa", "kills": 0 },
+                { "dupla": "Kisaki121 & Gabrielhoffmann", "kills": 0 },
+                { "dupla": "SALOMON_BR & LandersSA", "kills": 0 },
+                { "dupla": "WF_PROZIN & Xx_mota_xX10", "kills": 0 },
+                { "dupla": "Xandexande & Bruninho", "kills": 0 }
+            ]
+        },
+        {
+            "matchNumber": 3,
+            "map": "Miramar",
+            "vencedor": null,
+            "resultados": [
+                { "dupla": "Alemaofire13 & Xchumelax", "kills": 0 },
+                { "dupla": "Azafree22 & xA_N_D_R_Ex", "kills": 0 },
+                { "dupla": "Dedel & Yuri2099", "kills": 0 },
+                { "dupla": "Doomed_Aim & gambin_metaleiro", "kills": 0 },
+                { "dupla": "GAROX & Mateus_Sousa", "kills": 0 },
+                { "dupla": "Kisaki121 & Gabrielhoffmann", "kills": 0 },
+                { "dupla": "SALOMON_BR & LandersSA", "kills": 0 },
+                { "dupla": "WF_PROZIN & Xx_mota_xX10", "kills": 0 },
+                { "dupla": "Xandexande & Bruninho", "kills": 0 }
+            ]
+        },
+        {
+            "matchNumber": 4,
+            "map": "Erangel",
+            "vencedor": null,
+            "resultados": [
+                { "dupla": "Alemaofire13 & Xchumelax", "kills": 0 },
+                { "dupla": "Azafree22 & xA_N_D_R_Ex", "kills": 0 },
+                { "dupla": "Dedel & Yuri2099", "kills": 0 },
+                { "dupla": "Doomed_Aim & gambin_metaleiro", "kills": 0 },
+                { "dupla": "GAROX & Mateus_Sousa", "kills": 0 },
+                { "dupla": "Kisaki121 & Gabrielhoffmann", "kills": 0 },
+                { "dupla": "SALOMON_BR & LandersSA", "kills": 0 },
+                { "dupla": "WF_PROZIN & Xx_mota_xX10", "kills": 0 },
+                { "dupla": "Xandexande & Bruninho", "kills": 0 }
+            ]
+        }
+    ]
+}
