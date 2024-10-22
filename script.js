@@ -1,157 +1,116 @@
-// Variáveis globais
 let partidas = [];
-let currentPartida = 0;
+let partidaAtual = 0; // Inicializa com 0
+let totalPartidas = 0; // Variável para armazenar o total de partidas
 
-// -------------------------
-// Lógica do Campeonato
-// -------------------------
-
-// Função para carregar dados do campeonato
-async function loadData() {
-    try {
-        const response = await fetch('https://raw.githubusercontent.com/andreflp2/pubg_camp/refs/heads/main/data.json'); // URL do JSON
+// Carrega o arquivo JSON com as partidas
+fetch('partidas.json')
+    .then(response => {
         if (!response.ok) {
-            throw new Error(`Erro HTTP: ${response.status}`);
+            throw new Error('Erro na rede: ' + response.status);
         }
-        const data = await response.json();
+        return response.json();
+    })
+    .then(data => {
         partidas = data.partidas;
+        totalPartidas = partidas.length; // Armazena o total de partidas
+        partidaAtual = totalPartidas - 1; // Define partidaAtual como a última partida
+        atualizarClassificacao();
+        mostrarResultados(partidaAtual);
+    })
+    .catch(error => {
+        console.error('Erro ao carregar o arquivo JSON:', error);
+    });
 
-        if (partidas.length === 0) {
-            displayError("Não há dados disponíveis.");
-            toggleNavigationButtons(false);
-            return;
-        }
+// Atualiza a classificação geral
+function atualizarClassificacao() {
+    const tabela = document.querySelector('#classificacao tbody');
+    tabela.innerHTML = ''; // Limpa a tabela antes de atualizar
+    const classificacao = calcularClassificacao();
 
-        currentPartida = 0;
-
-        updateTable();
-        updateClassificacao();
-        updatePartidaInfo();
-        updateNavigationButtons();
-        toggleNavigationButtons(true);
-    } catch (error) {
-        displayError("Erro ao carregar os dados: " + error.message);
-    }
-}
-
-// Função para atualizar a tabela de resultados da partida atual
-function updateTable() {
-    const tbody = document.getElementById('resultados-body');
-    tbody.innerHTML = '';
-
-    const partida = partidas[currentPartida].resultados;
-    partida.forEach((item, index) => {
+    classificacao.forEach((dupla, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${item.dupla}</td>
-            <td>${item.kills}</td>
+            <td>${dupla.dupla}</td>
+            <td>${dupla.kills}</td>
+            <td>${dupla.pontuacao}</td>
         `;
-        tbody.appendChild(row);
+        tabela.appendChild(row);
     });
 }
 
-// Função para calcular a pontuação com base na posição e nas kills
-function calculatePontuacao(posicao, kills) {
-    const pontosPorPosicao = [0, 10, 8, 6, 4, 2];
-    return (pontosPorPosicao[posicao] || 0) + kills;
-}
-
-// Função para atualizar a classificação geral
-function updateClassificacao() {
-    const tbody = document.getElementById('classificacao-body');
-    tbody.innerHTML = '';
-
-    const classificacao = {};
+// Calcula a classificação com base nos resultados das partidas
+function calcularClassificacao() {
+    const duplas = {};
 
     partidas.forEach(partida => {
-        partida.resultados.forEach(item => {
-            if (!classificacao[item.dupla]) {
-                classificacao[item.dupla] = { vitórias: 0, kills: 0, pontuacao_total: 0 };
+        partida.resultados.forEach(result => {
+            if (!duplas[result.dupla]) {
+                duplas[result.dupla] = { kills: 0, pontuacao: 0 };
             }
-            classificacao[item.dupla].vitórias += item.posicao === 1 ? 1 : 0;
-            classificacao[item.dupla].kills += item.kills;
-            classificacao[item.dupla].pontuacao_total += calculatePontuacao(item.posicao, item.kills);
+            duplas[result.dupla].kills += result.kills; // Soma kills
+            duplas[result.dupla].pontuacao += calcularPontuacao(partida.vencedor, result.dupla); // Soma pontuação
         });
     });
 
-    const sortedClassificacao = Object.entries(classificacao)
-        .map(([dupla, stats]) => ({ dupla, ...stats }))
-        .sort((a, b) => b.pontuacao_total - a.pontuacao_total);
+    return Object.entries(duplas).map(([dupla, stats]) => ({
+        dupla,
+        kills: stats.kills,
+        pontuacao: stats.pontuacao,
+    })).sort((a, b) => b.pontuacao - a.pontuacao); // Ordena por pontuação
+}
 
-    sortedClassificacao.forEach((item, index) => {
+// Calcula a pontuação com base na posição e na vitória
+function calcularPontuacao(vencedor, dupla) {
+    const posicoes = {
+        1: 10,
+        2: 8,
+        3: 6,
+        4: 4,
+        5: 2,
+    };
+
+    // Retorna a pontuação baseada na posição se a dupla venceu
+    return (vencedor === dupla) ? posicoes[1] : 0; // Exemplo simples para pontuação da vitória
+}
+
+// Mostra os resultados da partida atual
+function mostrarResultados(index) {
+    const resultados = partidas[index].resultados;
+    const tabelaResultados = document.querySelector('#resultados tbody');
+    const mapName = document.querySelector('#mapName');
+
+    tabelaResultados.innerHTML = ''; // Limpa a tabela antes de atualizar
+    mapName.textContent = `Mapa: ${partidas[index].map}`; // Exibe o nome do mapa
+
+    resultados.forEach((result, position) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${item.dupla}</td>
-            <td>${item.kills}</td>
-            <td>${item.pontuacao_total}</td>
+            <td>${position + 1}</td>
+            <td>${result.dupla}</td>
+            <td>${result.kills}</td>
+            <td>${calcularPontuacao(partidas[index].vencedor, result.dupla)}</td>
         `;
-        tbody.appendChild(row);
+        tabelaResultados.appendChild(row);
     });
+
+    // Atualiza informações da partida
+    document.querySelector('#partidaInfo').textContent = `Partida ${index + 1} de ${totalPartidas}`;
+    document.querySelector('#prevButton').disabled = index === 0; // Desabilita botão anterior se for a primeira partida
+    document.querySelector('#nextButton').disabled = index === totalPartidas - 1; // Desabilita botão seguinte se for a última partida
 }
 
-// Função para atualizar informações da partida atual
-function updatePartidaInfo() {
-    const partidaInfo = document.getElementById('partida-info');
-    partidaInfo.textContent = `Partida ${currentPartida + 1} de ${partidas.length}`;
-}
-
-// Função para atualizar os botões de navegação
-function updateNavigationButtons() {
-    document.getElementById('prev-button').disabled = currentPartida === 0;
-    document.getElementById('next-button').disabled = currentPartida === partidas.length - 1;
-}
-
-function toggleNavigationButtons(show) {
-    const prevButton = document.getElementById('prev-button');
-    const nextButton = document.getElementById('next-button');
-
-    prevButton.style.display = show ? 'inline-block' : 'none';
-    nextButton.style.display = show ? 'inline-block' : 'none';
-}
-
-// Função para mudar de partida
-function changePartida(direction) {
-    currentPartida += direction;
-    updateTable();
-    updatePartidaInfo();
-    updateNavigationButtons();
-}
-
-// Adicionando eventos de clique aos botões de navegação
-document.getElementById('prev-button').addEventListener('click', () => changePartida(-1));
-document.getElementById('next-button').addEventListener('click', () => changePartida(1));
-
-function displayError(message) {
-    alert(message);
-}
-
-// -------------------------
-// Lógica da Arrecadação
-// -------------------------
-
-// Evento para abrir e fechar o modal de arrecadação
-const widgetModal = document.getElementById('widgetModal');
-const openWidgetBtn = document.getElementById('openWidgetBtn');
-const closeWidgetBtn = document.getElementsByClassName('close')[0];
-
-// Função para abrir o modal
-openWidgetBtn.onclick = function() {
-    widgetModal.style.display = "block";
-};
-
-// Função para fechar o modal
-closeWidgetBtn.onclick = function() {
-    widgetModal.style.display = "none";
-};
-
-// Fechar o modal se o usuário clicar fora do conteúdo
-window.onclick = function(event) {
-    if (event.target === widgetModal) {
-        widgetModal.style.display = "none";
+// Eventos para os botões de navegação
+document.querySelector('#prevButton').addEventListener('click', () => {
+    if (partidaAtual > 0) {
+        partidaAtual--;
+        mostrarResultados(partidaAtual); // Atualiza os resultados para a partida anterior
     }
-};
+});
 
-// Carregar dados ao iniciar
-document.addEventListener('DOMContentLoaded', loadData);
+document.querySelector('#nextButton').addEventListener('click', () => {
+    if (partidaAtual < totalPartidas - 1) {
+        partidaAtual++;
+        mostrarResultados(partidaAtual); // Atualiza os resultados para a próxima partida
+    }
+});
